@@ -1,0 +1,49 @@
+
+Covariance and correlation are basic measures describing the relationship between
+two variables. They are a broad class of statistical tools which evaluate how
+two variables are related with dependence or association, especially for linear
+relationship. Difference between the two is that covariance is calculated under
+the original units of two variables, while correlation is obtained based on standardized
+scale resulting in a unit-less measure.
+
+
+COVARIANCE
+
+Covariance is defined as the expected value of variations of two variables from their
+expected values. More simply, covariance measures how much variables change together.
+The mean of each variable is used as reference and relative positions of observations 
+compared to mean is important. Covariance is simply defined as the mean of multiplication
+of corresponding X and Y deviations from their mean.
+
+
+
+Then what can we say about the size of covariance values? Magnitude of the relationship? 
+However, the problem is that the absolute value of covariance depends on the unit of variables. 
+For example, if we change the unit of a variable from kilometer to meter unit, then the 
+deviance from mean of 1 in kilometer units (km) is changed into 1,000 in meter units (m). 
+The unit change makes huge difference in the value of covariance, even when the relationship 
+of 2 variables is the same. Therefore, the size of covariance value cannot be interpretable 
+as the magnitude of a relationship. Also, a covariance value has neither upper or lower bound 
+nor any standard to determine the degree of relationship. There is a need of unit standardization 
+procedure on covariance.
+
+
+
+PEARSON CORRELATION COEFFICIENT
+
+
+Correlation is the standardized form of covariance by dividing the covariance with 
+SD of each variable under normal distribution assumption. Generally, we use ‘r’ as 
+sample correlation coefficient and ‘ρ’ as population correlation coefficient. The Pearson 
+correlation coefficient has following formula.
+
+
+The Pearson correlation coefficient is also the covariance of standardized form of X and Y 
+variables. The correlation coefficient is unit-less, being independent of the scale of variables 
+and the range is between −1 and +1. The interpretation of the Pearson correlation coefficient 
+was provided by Cohen [1]. He proposed a small, medium, and large effect size of r as 0.1, 0.3, 
+and 0.5, respectively, and explained that the medium effect size represents an effect likely to 
+be visible to the naked eye of a careful observer. Also he subjectively set a small effect size 
+to be noticeably smaller than medium but not so small as to be trivial and set a large effect size 
+to be the same distance above the medium as small was below it [1]. His standard is generally 
+accepted at the present.

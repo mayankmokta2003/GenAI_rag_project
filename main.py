@@ -1,16 +1,99 @@
+# from dotenv import load_dotenv
+# load_dotenv()
+# from langchain_core.prompts import ChatPromptTemplate
+# from langchain_mistralai import ChatMistralAI
+
+
+
+# tempelate = ChatPromptTemplate.from_messages([
+#     ("system",
+#     """ you are an AI that summarizes the text """),
+#     ("human",
+#     """ {data} """)
+# ])
+
+
+# model = ChatMistralAI(model="mistral-small-2506")
+
+
+
+
+
+
+
 from dotenv import load_dotenv
 load_dotenv()
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_mistralai import ChatMistralAI
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_mistralai import ChatMistralAI, MistralAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_classic.retrievers.multi_query import MultiQueryRetriever
+from langchain_core.prompts import PromptTemplate
+
+
+llm = ChatMistralAI(model="mistral-small-2506")
+
+embedding_model = MistralAIEmbeddings()
+
+vectorstore = Chroma(
+    embedding = embedding_model,
+    persist_directory = "chroma_db"
+)
+
+retriever = vectorstore.as_retriever(
+    search_type="mmr",
+    search_kwargs={
+        "k": 4,
+        "fetch_k": 10,
+        "lambda_mult": 0.5
+    },
+)
 
 
 
-tempelate = ChatPromptTemplate.from_messages([
+# multi_query_retrieval = MultiQueryRetriever.from_llm()
+
+
+
+# prompt tempelate
+
+# ques = input()
+
+prompt = PromptTemplate.from_messages([
     ("system",
-    """ you are an AI that summarizes the text """),
+    """ You are an helpful AI assistant
+    Use only the provided context to answer the question.
+    If the answer is not present in the context,
+    say: "I could not find the answer of your question in the document"
+       """),
     ("human",
-    """ {data} """)
+    """ Context: {context} 
+    Question: {question} """)
 ])
 
+# rules = prompt.invoke(
+#     {"context": multi_query_retrieval,
+#      "question": ques
+#     }
+# )
 
-model = ChatMistralAI(model="mistral-small-2506")
+print("-----------RAG SYSTEM CREATED----------")
+print("Press 0 to exit")
+
+while True:
+    query = input("You : ")
+    if query == 0:
+        break
+    docs = retriever.invoke(query)
+    
+
+
+
+
+
+
+
+
+
+
+
+

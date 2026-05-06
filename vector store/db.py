@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 load_dotenv()
-
+from langchain_community.retrievers import wik
 from langchain_mistralai import MistralAIEmbeddings
 from langchain_classic.vectorstores import Chroma
 

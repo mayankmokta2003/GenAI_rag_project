@@ -7,6 +7,9 @@ from langchain_classic.retrievers.multi_query import MultiQueryRetriever
 from langchain_core.prompts import ChatPromptTemplate
 
 
+
+messages = []
+
 llm = ChatMistralAI(model="mistral-small-2506")
 
 embedding_model = MistralAIEmbeddings()
@@ -46,30 +49,6 @@ prompt = ChatPromptTemplate.from_messages([
 
 print("-----------RAG SYSTEM CREATED----------")
 print("Press 0 to exit")
-
-while True:
-    query = input("You : ")
-    if query == 0:
-        break
-    docs = retriever.invoke(query)
-    # context = "\n\n".join(
-    #     [doc.page_content for doc in docs]
-    # )
-    context = []
-    for i in docs:
-        context.append(i.page_content)
-    context = "\n\n".join(context)
-
-    final_prompt = prompt.invoke({
-        "context": context,
-        "question": query
-    })
-    response = llm.invoke(final_prompt)
-    print(f"\n AI: {response.content}")
-
-
-
-
 
 
 

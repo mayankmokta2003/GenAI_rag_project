@@ -67,6 +67,4 @@ splitter = RecursiveCharacterTextSplitter(
 
 chunks = splitter.split_documents(docs)
 
-
-
 print(docs)
